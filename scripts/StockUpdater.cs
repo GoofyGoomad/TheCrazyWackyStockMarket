@@ -3,13 +3,13 @@ using Godot;
 
 public partial class StockUpdater : Timer
 {
-    int placeholderNumber = 0;
+    int stockTruePrice = 50;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
+        GetNode<Label>("../Display/StockBuyPrice").Text = $"{stockTruePrice}";
+        GetNode<Label>("../Display/StockSellPrice").Text = $"{Math.Round(((double)stockTruePrice / 100) * 90)}";
         this.Timeout += UpdateStocks;
-        //this.Timeout += stockTitle;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,8 +18,15 @@ public partial class StockUpdater : Timer
     }
     public void UpdateStocks()
     {
-        GetNode<Label>("/root/Game/StockTitle").Text = $"Coins + {placeholderNumber}";
-        GD.Print("hello");
-        placeholderNumber++;
+        //GetNode<Label>("../Display/StockTitle").Text = $"Coins + {stockTruePrice}";
+        Random random = new Random();
+        int[] plusOrMinusChances = { -1, 0, 1};
+        int randomPriceChange = random.Next(plusOrMinusChances.Length);
+        
+        stockTruePrice += plusOrMinusChances[randomPriceChange];
+        GetNode<Label>("../Display/StockBuyPrice").Text = $"{stockTruePrice}";
+        GetNode<Label>("../Display/StockSellPrice").Text = $"{Math.Round(((double)stockTruePrice / 100) * 90)}";
+        
+        //GD.Print("hello"); Use for debugging
     }
 }

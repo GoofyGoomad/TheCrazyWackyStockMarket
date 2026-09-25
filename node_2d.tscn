@@ -1,27 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://bel3gb08qt5et"]
+[gd_scene format=3 uid="uid://bel3gb08qt5et"]
 
 [ext_resource type="FontFile" uid="uid://bf3owh48d1so" path="res://assets/fonts/FiraSans-Regular.ttf" id="1_wtcfe"]
-[ext_resource type="Script" path="res://scripts/StockUpdater.cs" id="2_2bann"]
+[ext_resource type="Script" uid="uid://dh4iqc0v8770q" path="res://scripts/StockUpdater.cs" id="2_2bann"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=1553854055]
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=13702307]
 offset_right = 8.0
 offset_bottom = 8.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="MainCamera" type="Camera2D" parent="." unique_id=124524034]
 
-[node name="StockTitle" type="Label" parent="."]
-offset_left = -128.0
-offset_top = -80.0
-offset_right = 351.0
-offset_bottom = 257.0
-theme_override_fonts/font = ExtResource("1_wtcfe")
-theme_override_font_sizes/font_size = 64
-text = "hello"
+[node name="Stocks" type="Node2D" parent="." unique_id=157272244]
 
-[node name="CodeBehind" type="Node2D" parent="."]
-
-[node name="StockUpdater" type="Timer" parent="CodeBehind"]
+[node name="StockUpdater" type="Timer" parent="Stocks" unique_id=201390487]
 autostart = true
 script = ExtResource("2_2bann")
+
+[node name="Display" type="Control" parent="Stocks" unique_id=1675243339]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StockTitle" type="Label" parent="Stocks/Display" unique_id=2016328121]
+layout_mode = 0
+offset_left = -247.0
+offset_top = -539.0
+offset_right = 232.0
+offset_bottom = -462.0
+theme_override_fonts/font = ExtResource("1_wtcfe")
+theme_override_font_sizes/font_size = 64
+text = "Stock"
+horizontal_alignment = 1
+
+[node name="StockBuyPrice" type="Label" parent="Stocks/Display" unique_id=951725174]
+layout_mode = 0
+offset_left = -270.0
+offset_top = -426.0
+offset_right = -35.0
+offset_bottom = -349.0
+theme_override_fonts/font = ExtResource("1_wtcfe")
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[node name="StockSellPrice" type="Label" parent="Stocks/Display" unique_id=1709054271]
+layout_mode = 0
+offset_left = 35.0
+offset_top = -426.0
+offset_right = 270.0
+offset_bottom = -349.0
+theme_override_fonts/font = ExtResource("1_wtcfe")
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
