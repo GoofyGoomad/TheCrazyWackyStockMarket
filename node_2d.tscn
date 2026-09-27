@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bel3gb08qt5et"]
+[gd_scene load_steps=5 format=3 uid="uid://bel3gb08qt5et"]
 
+[ext_resource type="Script" path="res://scripts/Stocks.cs" id="1_4tysn"]
 [ext_resource type="FontFile" uid="uid://bf3owh48d1so" path="res://assets/fonts/FiraSans-Regular.ttf" id="1_wtcfe"]
-[ext_resource type="Script" path="res://scripts/StockUpdater.cs" id="2_2bann"]
+[ext_resource type="Script" path="res://scripts/Stocks/StockUpdater.cs" id="2_2bann"]
+[ext_resource type="Script" path="res://scripts/Stocks/Display.cs" id="3_v4dfv"]
 
 [node name="Game" type="Node2D"]
 
@@ -12,44 +14,34 @@ offset_bottom = 8.0
 [node name="MainCamera" type="Camera2D" parent="."]
 
 [node name="Stocks" type="Node2D" parent="."]
+script = ExtResource("1_4tysn")
 
 [node name="StockUpdater" type="Timer" parent="Stocks"]
 autostart = true
 script = ExtResource("2_2bann")
 
-[node name="Display" type="Control" parent="Stocks"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Display" type="GridContainer" parent="Stocks"]
+offset_left = -725.0
+offset_top = -415.0
+offset_right = 717.0
+offset_bottom = 427.0
+columns = 3
+script = ExtResource("3_v4dfv")
 
 [node name="StockTitle" type="Label" parent="Stocks/Display"]
-layout_mode = 0
-offset_left = -247.0
-offset_top = -539.0
-offset_right = 232.0
-offset_bottom = -462.0
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_wtcfe")
 theme_override_font_sizes/font_size = 64
-text = "Stock"
 horizontal_alignment = 1
 
 [node name="StockBuyPrice" type="Label" parent="Stocks/Display"]
-layout_mode = 0
-offset_left = -270.0
-offset_top = -426.0
-offset_right = -35.0
-offset_bottom = -349.0
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_wtcfe")
 theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 
 [node name="StockSellPrice" type="Label" parent="Stocks/Display"]
-layout_mode = 0
-offset_left = 35.0
-offset_top = -426.0
-offset_right = 270.0
-offset_bottom = -349.0
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_wtcfe")
 theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
