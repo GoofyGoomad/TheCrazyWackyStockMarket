@@ -1,38 +1,36 @@
-using Godot;
 using System;
 using System.Collections.Generic;
+using Godot;
 
 public partial class Display : GridContainer
 {
-	private Node2D Stock;
+	private Label Stock;
 	private Label stockTitle;
-	private int stockNumIndicator = 0;
-	private List<int> stockNum = new List<int>() {};
-	public void StockCreator()
+	private int stockIdIndicator = 0;
+	private List<int> stockId = new List<int>() {};
+	public void StockCreator(string name)
 	{
-		stockNumIndicator += 1;
-		for (int i = (10 - stockNumIndicator.ToString().Length); i > 0; i--)
+		stockIdIndicator++;
+		for (int i = (10 - stockIdIndicator.ToString().Length); i > 0; i--)
 		{
-			stockNum.Add(0);
+			stockId.Add(0);
 		}
-		stockNum.Add(stockNumIndicator);
+		stockId.Add(stockIdIndicator);
 
-		Stock = new Node2D();
-		Stock.Name = $"Stock{String.Join("", stockNum)}";
-		AddChild(Stock);
+		Stock = new Label();
+        Stock.Name = $"Stock{String.Join("", stockId)}";
+        Stock.Text = name;
+        AddChild(Stock);
 
-		stockTitle = new Label();
-		stockTitle.Text = "This is text";
-
-		stockNum = new List<int>() {};
+        stockId = new List<int>() {};
 	}
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		for (int i = 0; i < 100; i++)
+		foreach (string stock in Stocks.stockList)
 		{
-			StockCreator();
+			StockCreator(stock);
 		}
 	}
 
